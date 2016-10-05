@@ -1,0 +1,15 @@
+#!/bin/bash
+
+dlist=(`curl -s -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:40.0) Gecko/20100101 Firefox/40.0' "https://www.udacity.com/wiki/$1/downloads" | sed -n 's/.*href="\([^"]*\).*/\1/p' | grep zip`)
+
+for i in ${dlist[@]};
+do
+	if [ -f "${i##*$1/}" ]; then
+		echo "${i##*$1/} : Resuming Download..."
+		curl -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:40.0) Gecko/20100101 Firefox/40.0' -L -o "${i##*$1/}" -C - "$i"
+	else
+		echo "Downloading ${i##*$1/}"
+		curl -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:40.0) Gecko/20100101 Firefox/40.0' -o "${i##*$1/}" "$i"
+	fi
+done
+
