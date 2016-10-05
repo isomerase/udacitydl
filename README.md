@@ -9,7 +9,7 @@ This script can be used to download some downloadable [courses](https://www.udac
 - Download [udacitydl](https://github.com/naingyeminn/udacitydl/archive/master.zip) zip file
 
 ```sh
-$ wget https://github.com/naingyeminn/udacitydl/archive/master.zip -O udacitydl.zip
+$ curl -o udacitydl.zip https://github.com/naingyeminn/udacitydl/archive/master.zip
 ```
 
 - Extract udacitydl.zip file
